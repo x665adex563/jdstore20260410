@@ -1,0 +1,41 @@
+<%= form_with model: [:admin, @product], local: true do |f| %>
+
+  <% if @product.errors.any? %>
+    <div class="mb-4 text-red-600">
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Title -->
+  <div class="mb-4">
+    <%= f.label :title, t("activerecord.attributes.product.title"), class: "block text-gray-700 font-medium mb-1" %>
+    <%= f.text_field :title, class: "w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <!-- Description -->
+  <div class="mb-4">
+    <%= f.label :description, t("activerecord.attributes.product.description"), class: "block text-gray-700 font-medium mb-1" %>
+    <%= f.text_area :description, class: "w-full border rounded px-3 py-2 h-24 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <!-- Quantity -->
+  <div class="mb-4">
+    <%= f.label :quantity, t("activerecord.attributes.product.quantity"), class: "block text-gray-700 font-medium mb-1" %>
+    <%= f.number_field :quantity, class: "w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <!-- Price -->
+  <div class="mb-6">
+    <%= f.label :price, t("activerecord.attributes.product.price"), class: "block text-gray-700 font-medium mb-1" %>
+    <%= f.number_field :price, step: 0.01, class: "w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <!-- Submit Button -->
+  <div>
+    <%= f.submit submit_label, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+<% end %>
