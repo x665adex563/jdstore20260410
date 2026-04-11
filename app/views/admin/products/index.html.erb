@@ -1,0 +1,66 @@
+<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+  <!-- Header -->
+  <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+    <h2 class="text-xl font-semibold text-gray-900">
+      <%= t("admin.products.index.title", default: "Products") %>
+    </h2>
+
+    <%= link_to new_admin_product_path,
+        class: "inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition" do %>
+      <i class="fa-solid fa-plus"></i>
+      <span><%= t("admin.products.index.new", default: "New") %></span>
+    <% end %>
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full table-fixed divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold uppercase text-gray-500">
+            <%= t("admin.products.index.table.title", default: "Title") %>
+          </th>
+
+          <th class="w-28 px-6 py-3 text-right text-xs font-semibold uppercase text-gray-500">
+            <%= t("admin.products.index.table.actions", default: "Actions") %>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-100">
+        <% @products.each do |product| %>
+          <tr class="hover:bg-gray-50 transition">
+
+            <!-- Title -->
+            <td class="px-6 py-4 text-sm font-medium text-gray-900">
+              <%= product.title %>
+            </td>
+
+            <!-- Actions -->
+            <td class="w-28 px-6 py-4 text-right align-middle">
+              <div class="flex items-center justify-end gap-2">
+
+                <!-- Edit -->
+                <%= link_to edit_admin_product_path(product),
+                    class: "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600",
+                    title: t("admin.products.actions.edit", default: "Edit") do %>
+                  <i class="fa-solid fa-pen text-sm"></i>
+                <% end %>
+
+                <!-- Delete -->
+                <%= button_to admin_product_path(product),
+                    method: :delete,
+                    form_class: "inline-block",
+                    data: { turbo_confirm: t("admin.products.confirm.delete") },
+                    class: "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-500 transition hover:border-red-300 hover:bg-red-100 hover:text-red-600",
+                    title: t("admin.products.actions.delete", default: "Delete") do %>
+                  <i class="fa-solid fa-trash text-sm"></i>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
