@@ -36,6 +36,8 @@
 
   <!-- Submit Button -->
   <div>
-    <%= f.submit submit_label, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    <%= f.submit submit_label,
+    data: { disable_with: t("common.submitting") },
+    class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
   </div>
 <% end %>
