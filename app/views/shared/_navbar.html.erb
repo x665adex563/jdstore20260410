@@ -10,7 +10,9 @@
       </div>
 
       <!-- Right: Auth actions -->
-      <div class="flex items-center">
+      <div class="flex items-center gap-3">
+        <%= render "shared/locale_switcher" %>
+        
         <% if user_signed_in? %>
           <%= render "shared/navbar_user" %>
         <% else %>
