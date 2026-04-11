@@ -1,0 +1,23 @@
+<nav class="bg-slate-900 shadow-sm">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+
+      <!-- Left: Brand -->
+      <div class="flex items-center">
+        <%= link_to root_path, class: "text-xl font-semibold tracking-tight text-white" do %>
+          JDStore
+        <% end %>
+      </div>
+
+      <!-- Right: Auth actions -->
+      <div class="flex items-center">
+        <% if user_signed_in? %>
+          <%= render "shared/navbar_user" %>
+        <% else %>
+          <%= render "shared/navbar_guest" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</nav>

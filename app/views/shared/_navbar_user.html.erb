@@ -1,0 +1,29 @@
+<div class="relative group">
+  <button
+    type="button"
+    class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-200 transition hover:bg-slate-800 hover:text-white focus:outline-none">
+    <span class="max-w-[220px] truncate">
+      Hi, <%= current_user.email %>
+    </span>
+
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="h-4 w-4 flex-shrink-0 transition duration-150 group-hover:rotate-180"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div class="absolute right-0 top-full z-50 hidden pt-2 group-hover:block">
+    <div class="w-48 rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
+      <%= link_to "登出",
+          destroy_user_session_path,
+          data: { turbo_method: :delete },
+          class: "block px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50" %>
+    </div>
+  </div>
+</div>
