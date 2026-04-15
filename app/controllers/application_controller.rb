@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
   def default_url_options
     { locale: I18n.locale }
   end
+
+  def admin_required
+    if !current_user.admin?
+      redirect_to "/", alert: t("admin.flash.not_admin")
+    end
+  end
 end
