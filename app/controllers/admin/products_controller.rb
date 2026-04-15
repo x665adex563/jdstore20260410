@@ -25,7 +25,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to admin_product_path, notice: t("admin.products.flash.updated")
+      redirect_to admin_products_path, notice: t("admin.products.flash.updated")
     else
       render :edit
     end
