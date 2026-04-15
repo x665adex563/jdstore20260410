@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :update]
+  before_action :set_product, only: [:edit, :update, :destroy]
 
   def new
     @product = Product.new
@@ -27,6 +27,11 @@ class Admin::ProductsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @product.destroy
+    redirect_to admin_products_path, notice: t("admin.products.flash.deleted")
   end
 
   private
