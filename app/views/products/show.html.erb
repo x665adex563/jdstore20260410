@@ -10,7 +10,7 @@
         <div class="flex aspect-square w-full items-center justify-center rounded-2xl border border-gray-200 bg-gray-100 shadow-sm">
           <div class="text-center text-gray-400">
             <i class="fa-regular fa-image mb-3 text-5xl"></i>
-            <p class="text-sm"><%= t(".no_pic") %></p>
+            <p class="text-sm"><%= t("products.no_pic") %></p>
           </div>
         </div>
       <% end %>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="mt-3 flex items-center gap-2 text-2xl font-bold text-red-500">
-          <%= t(".currency_unit") %>
+          <%= t("products.currency_unit") %>
           <%= @product.price %>
         </div>
       </div>
