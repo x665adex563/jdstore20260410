@@ -52,9 +52,9 @@ en:
       added: "Added to cart"
 
   products:
-      no_pic: "No Image"
-      show:
-        quantity: "Stock"
+    no_pic: "No Image"
+    show:
+      quantity: "Stock"
 
   activerecord:
     attributes:
