@@ -1,0 +1,42 @@
+<div class="flex items-center gap-3">
+
+  <!-- Dropdown -->
+  <div class="relative group">
+    <button
+      type="button"
+      class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-200 transition hover:bg-slate-800 hover:text-white focus:outline-none">
+
+      <span class="max-w-[160px] truncate">
+        <%= t("shared.navbar_admin.greeting", email: current_user.email) %>
+      </span>
+
+      <i class="fa-solid fa-chevron-down text-xs transition group-hover:rotate-180"></i>
+    </button>
+
+    <div class="absolute right-0 top-full z-50 hidden pt-2 group-hover:block">
+      <div class="w-56 rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
+
+        <%= link_to admin_products_path,
+            class: "flex items-center px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50" do %>
+          <i class="fa-solid fa-box-open w-5 mr-2 text-gray-400 text-center"></i>
+          <%= t("shared.navbar_admin.products") %>
+        <% end %>
+
+        <%= link_to "#",
+            class: "flex items-center px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50" do %>
+          <i class="fa-solid fa-receipt w-5 mr-2 text-gray-400 text-center"></i>
+          <%= t("shared.navbar_admin.orders") %>
+        <% end %>
+
+        <%= link_to destroy_user_session_path,
+            data: { turbo_method: :delete },
+            class: "flex items-center px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50" do %>
+          <i class="fa-solid fa-right-from-bracket w-5 mr-2 text-gray-400 text-center"></i>
+          <%= t("shared.navbar_admin.sign_out") %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+</div>

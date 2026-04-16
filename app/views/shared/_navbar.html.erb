@@ -21,7 +21,11 @@
         <%= render "shared/locale_switcher" %>
 
         <% if user_signed_in? %>
-          <%= render "shared/navbar_user" %>
+          <% if current_user.admin? %>
+            <%= render "shared/navbar_admin" %>
+          <% else %>
+            <%= render "shared/navbar_user" %>
+          <% end %>
         <% else %>
           <%= render "shared/navbar_guest" %>
         <% end %>
