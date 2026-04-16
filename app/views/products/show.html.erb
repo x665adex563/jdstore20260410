@@ -1,0 +1,4 @@
+<%= button_to t("cart_items.add_to_cart"),
+    cart_items_path(product_id: @product.id),
+    method: :post,
+    class: "bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200" %>
