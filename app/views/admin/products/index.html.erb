@@ -45,7 +45,7 @@
             <td class="px-6 py-4">
               <%= link_to product_path(product), class: "block w-fit" do %>
                 <% if product.image.attached? %>
-                  <%= image_tag product.image.variant(resize_to_limit: [200, 200]),
+                  <%= image_tag product.image,
                       class: "h-20 w-20 rounded-lg border border-gray-200 object-cover" %>
                 <% else %>
                   <%= image_tag "https://placehold.co/200x200?text=No+Pic",
