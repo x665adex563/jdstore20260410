@@ -6,18 +6,23 @@
           <%= image_tag product.image.variant(resize_to_limit: [400, 400]),
               class: "h-48 w-full object-cover" %>
         <% else %>
-          <%= image_tag "https://placehold.co/400x400?text=No+Pic",
-              class: "h-48 w-full object-cover" %>
+          <div class="flex h-48 w-full items-center justify-center bg-gray-100 text-gray-400">
+            <div class="text-center">
+              <i class="fa-regular fa-image mb-2 text-4xl"></i>
+              <p class="text-sm"><%= t("products.index.no_pic") %></p>
+            </div>
+          </div>
         <% end %>
       <% end %>
 
       <div class="p-4">
         <h3 class="mb-2 text-sm font-semibold text-gray-900">
-          <%= link_to product.title, product_path(product), class: "hover:text-blue-600" %>
+          <%= link_to product.title, product_path(product), class: "transition hover:text-blue-600" %>
         </h3>
 
-        <p class="text-sm text-gray-600">
-          ￥ <%= product.price %>
+        <p class="flex items-center gap-2 text-sm text-gray-600">
+          <%= t("products.index.currency_unit") %>
+          <%= product.price %>
         </p>
       </div>
     </div>
