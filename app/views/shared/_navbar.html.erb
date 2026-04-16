@@ -14,10 +14,26 @@
           <i class="fa-solid fa-box mr-1"></i>
           <%= t("navbar.products") %>
         <% end %>
+
       </div>
 
       <!-- Right: Auth actions -->
       <div class="flex items-center gap-3">
+        <!-- Cart -->
+        <%= link_to "#",
+            class: "relative flex items-center text-sm font-medium text-gray-300 transition hover:text-white" do %>
+
+          <i class="fa-solid fa-cart-shopping mr-1"></i>
+          <span><%= t("navbar.cart") %></span>
+
+          <% if current_cart.cart_items.any? %>
+            <span class="ml-2 inline-flex items-center justify-center rounded-full bg-red-500 px-2 py-0.5 text-xs font-semibold text-white">
+              <%= current_cart.cart_items.sum(:quantity) %>
+            </span>
+          <% end %>
+
+        <% end %>
+
         <%= render "shared/locale_switcher" %>
 
         <% if user_signed_in? %>
