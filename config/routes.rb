@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :show]
     resources :cart_items, only: [:create]
+    resources :carts
 
     # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
     # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

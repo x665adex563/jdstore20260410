@@ -1,0 +1,50 @@
+<div class="container mx-auto px-4">
+  <h2 class="text-2xl font-bold mb-6"><%= t("carts.title") %></h2>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full border border-gray-200">
+      <thead class="bg-gray-100">
+        <tr>
+          <th colspan="2" class="text-left px-4 py-2 border-b border-gray-200"><%= t("carts.table.product_info") %></th>
+          <th class="text-left px-4 py-2 border-b border-gray-200"><%= t("carts.table.price") %></th>
+          <th class="text-left px-4 py-2 border-b border-gray-200"><%= t("carts.table.quantity") %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% current_cart.cart_items.each do |cart_item| %>
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-2 border-b border-gray-200">
+              <%= link_to product_path(cart_item.product) do %>
+                <% if cart_item.product.image.attached? %>
+                  <%= image_tag(cart_item.product.image, class: "w-20 h-20 object-cover rounded") %>
+                <% else %>
+                  <%= image_tag("https://placehold.co/200x200?text=No+Pic", class: "w-20 h-20 object-cover rounded") %>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="px-4 py-2 border-b border-gray-200">
+              <%= link_to(cart_item.product.title, product_path(cart_item.product), class: "text-blue-600 hover:underline") %>
+            </td>
+            <td class="px-4 py-2 border-b border-gray-200">
+              <%= number_to_currency(cart_item.product.price, unit: "NT$") %>
+            </td>
+            <td class="px-4 py-2 border-b border-gray-200">
+              <%= cart_item.quantity %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-6 flex justify-end text-lg font-semibold">
+    <%= t("carts.total") %> <span class="ml-2 text-red-600">xxx <%= t("carts.currency") %></span>
+  </div>
+
+  <hr class="my-6">
+
+  <div class="flex justify-end">
+    <%= button_to t("carts.checkout"), "#", method: :post, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200" %>
+  </div>
+</div>
