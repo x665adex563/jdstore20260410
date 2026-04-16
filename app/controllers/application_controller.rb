@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+  helper_method :current_cart
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
@@ -23,5 +24,20 @@ class ApplicationController < ActionController::Base
     if !current_user.admin?
       redirect_to "/", alert: t("admin.flash.not_admin")
     end
+  end
+
+  def current_cart
+    @current_cart ||= find_cart
+  end
+
+  private
+
+  def find_cart
+    cart = Cart.find_by(id: session[:cart_id])
+    if cart.blank?
+      cart = Cart.create
+    end
+    session[:cart_id] = cart.id
+    return cart
   end
 end
