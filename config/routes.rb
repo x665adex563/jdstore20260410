@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|zh-TW/ do
     devise_for :users
-    root 'welcome#index'
+    root 'products#index'
     get "welcome/index"
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
