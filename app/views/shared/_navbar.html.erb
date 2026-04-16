@@ -2,17 +2,24 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
 
-      <!-- Left: Brand -->
-      <div class="flex items-center">
+      <!-- Left: Brand + Navigation -->
+      <div class="flex items-center space-x-6">
         <%= link_to root_path, class: "text-xl font-semibold tracking-tight text-white" do %>
           JDStore
+        <% end %>
+
+        <!-- Products -->
+        <%= link_to products_path,
+            class: "text-sm font-medium text-gray-300 transition hover:text-white" do %>
+          <i class="fa-solid fa-box mr-1"></i>
+          <%= t("navbar.products") %>
         <% end %>
       </div>
 
       <!-- Right: Auth actions -->
       <div class="flex items-center gap-3">
         <%= render "shared/locale_switcher" %>
-        
+
         <% if user_signed_in? %>
           <%= render "shared/navbar_user" %>
         <% else %>
