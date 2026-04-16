@@ -40,11 +40,21 @@ en:
 
   navbar:
     products: "Products"
+    cart: "Cart"
     admin:
       greeting: "Hi! %{email}"
       products: "Products"
       orders: "Orders"
       sign_out: "Sign out"
+
+  carts:
+    title: "Shopping Cart"
+    table:
+      product_info: "Product Info"
+      price: "Price"
+      quantity: "Quantity"
+    total: "Total"
+    checkout: "Checkout"
 
   cart_items:
     add_to_cart: "Add to cart"
