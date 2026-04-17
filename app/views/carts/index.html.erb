@@ -1,6 +1,16 @@
 <div class="container mx-auto px-4">
-  <h2 class="text-2xl font-bold mb-6"><%= t("carts.title") %></h2>
+  <div class="mb-6 flex items-center justify-between">
+    <h2 class="text-2xl font-bold">
+      <%= t("carts.title") %>
+    </h2>
 
+    <%= button_to t("carts.clear"),
+        clear_carts_path,
+        method: :delete,
+        data: { turbo_confirm: t("carts.confirm_clear") },
+        class: "rounded-lg border border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors duration-200" %>
+  </div>
+  
   <div class="overflow-x-auto">
     <table class="min-w-full border border-gray-200">
       <thead class="bg-gray-100">
