@@ -4,43 +4,68 @@
       <%= t("carts.title") %>
     </h2>
 
-    <%= button_to t("carts.clear"),
-        clear_carts_path,
+    <%= button_to clear_carts_path,
         method: :delete,
         data: { turbo_confirm: t("carts.confirm_clear") },
-        class: "rounded-lg border border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors duration-200" %>
+        class: "inline-flex items-center rounded-lg border border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition" do %>
+      <i class="fa-solid fa-trash mr-2"></i>
+      <%= t("carts.clear") %>
+    <% end %>
   </div>
-  
+
   <div class="overflow-x-auto">
     <table class="min-w-full border border-gray-200">
       <thead class="bg-gray-100">
         <tr>
-          <th colspan="2" class="text-left px-4 py-2 border-b border-gray-200"><%= t("carts.table.product_info") %></th>
-          <th class="text-left px-4 py-2 border-b border-gray-200"><%= t("carts.table.price") %></th>
-          <th class="text-left px-4 py-2 border-b border-gray-200"><%= t("carts.table.quantity") %></th>
+          <th colspan="2" class="px-4 py-2 border-b border-gray-200 text-left">
+            <%= t("carts.table.product_info") %>
+          </th>
+          <th class="px-4 py-2 border-b border-gray-200 text-right">
+            <%= t("carts.table.price") %>
+          </th>
+          <th class="px-4 py-2 border-b border-gray-200 text-center">
+            <%= t("carts.table.quantity") %>
+          </th>
+          <th class="px-4 py-2 border-b border-gray-200 text-center">
+            <%= t("carts.table.actions") %>
+          </th>
         </tr>
       </thead>
 
       <tbody>
         <% current_cart.cart_items.each do |cart_item| %>
           <tr class="hover:bg-gray-50">
-            <td class="px-4 py-2 border-b border-gray-200">
+            <td class="px-4 py-2 border-b border-gray-200 align-middle">
               <%= link_to product_path(cart_item.product) do %>
                 <% if cart_item.product.image.attached? %>
-                  <%= image_tag(cart_item.product.image, class: "w-20 h-20 object-cover rounded") %>
+                  <%= image_tag(cart_item.product.image, class: "h-20 w-20 rounded object-cover") %>
                 <% else %>
-                  <%= image_tag("https://placehold.co/200x200?text=No+Pic", class: "w-20 h-20 object-cover rounded") %>
+                  <%= image_tag("https://placehold.co/200x200?text=No+Pic", class: "h-20 w-20 rounded object-cover") %>
                 <% end %>
               <% end %>
             </td>
-            <td class="px-4 py-2 border-b border-gray-200">
-              <%= link_to(cart_item.product.title, product_path(cart_item.product), class: "text-blue-600 hover:underline") %>
+
+            <td class="px-4 py-2 border-b border-gray-200 align-middle">
+              <%= link_to cart_item.product.title,
+                  product_path(cart_item.product),
+                  class: "text-blue-600 hover:underline" %>
             </td>
-            <td class="px-4 py-2 border-b border-gray-200">
+
+            <td class="px-4 py-2 border-b border-gray-200 text-right align-middle">
               <%= number_to_currency(cart_item.product.price, unit: "NT$") %>
             </td>
-            <td class="px-4 py-2 border-b border-gray-200">
+
+            <td class="px-4 py-2 border-b border-gray-200 text-center align-middle">
               <%= cart_item.quantity %>
+            </td>
+
+            <td class="px-4 py-2 border-b border-gray-200 text-center align-middle">
+              <%= button_to cart_item_path(cart_item),
+                  method: :delete,
+                  data: { turbo_confirm: t("carts.confirm_remove") },
+                  class: "inline-flex items-center justify-center text-red-500 hover:text-red-700 transition" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
             </td>
           </tr>
         <% end %>
