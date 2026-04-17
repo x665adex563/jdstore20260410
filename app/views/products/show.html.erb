@@ -39,10 +39,17 @@
       </div>
 
       <div class="mt-6">
-        <%= button_to cart_items_path(product_id: @product.id),
-            class: "flex w-full items-center justify-center gap-2 rounded-xl bg-red-500 px-6 py-3 font-medium text-white shadow-sm transition hover:bg-red-600" do %>
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span><%= t("cart_items.add_to_cart") %></span>
+        <% if @product.quantity > 0 %>
+          <%= button_to cart_items_path(product_id: @product.id),
+              class: "flex w-full items-center justify-center gap-2 rounded-xl bg-red-500 px-6 py-3 font-medium text-white shadow-sm transition hover:bg-red-600" do %>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span><%= t("cart_items.add_to_cart") %></span>
+          <% end %>
+        <% else %>
+          <div class="rounded-xl border border-gray-200 bg-gray-50 px-6 py-3 text-center text-sm text-gray-500">
+            <i class="fa-solid fa-circle-exclamation mr-2"></i>
+            <%= t("products.sold_out") %>
+          </div>
         <% end %>
       </div>
     </div>
