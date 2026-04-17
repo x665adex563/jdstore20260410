@@ -11,7 +11,7 @@ class CartItem < ApplicationRecord
     return unless quantity && product
 
     if quantity > product.quantity
-      errors.add(:quantity, t("cart_items.errors.exceed_stock"))
+      errors.add(:quantity, I18n.t("cart_items.errors.exceed_stock"))
     end
   end
 end

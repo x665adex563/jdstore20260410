@@ -49,10 +49,16 @@ en:
 
   carts:
     title: "Shopping Cart"
+    clear: "Clear Cart"
+    confirm_clear: "Are you sure you want to clear the entire cart?"
+    cleared_notice: "Cart has been cleared"
+
     table:
       product_info: "Product Info"
       price: "Price"
       quantity: "Quantity"
+      actions: "Actions"
+
     total: "Total"
     checkout: "Checkout"
 
@@ -60,6 +66,18 @@ en:
     add_to_cart: "Add to cart"
     flash:
       added: "Added to cart"
+
+    confirm_remove: "Are you sure you want to delete this item?"
+    destroyed_notice: "Successfully removed %{product}"
+    update_button: "Update"
+    submitting: "Submitting..."
+
+    updated_notice: "Quantity updated successfully"
+
+    errors:
+      blank: "can't be blank"
+      greater_than_zero: "must be at least 1"
+      exceed_stock: "cannot exceed stock quantity"
 
   products:
     no_pic: "No Image"
