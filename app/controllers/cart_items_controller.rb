@@ -19,11 +19,17 @@ class CartItemsController < ApplicationController
 
   def update
     @cart_item = current_cart.cart_items.find(params[:id])
-    if @cart_item.update(cart_item_params)
-      flash[:notice] = t("cart_items.updated_notice")
+
+    if @cart_item.product.quantity >= cart_item_params[:quantity].to_i
+      if @cart_item.update(cart_item_params)
+        flash[:notice] = t("cart_items.updated_notice")
+      else
+        flash[:alert] = @cart_item.errors.full_messages.join(", ")
+      end
     else
-      flash[:alert] = @cart_item.errors.full_messages.join(", ")
+      flash[:alert] = t("cart_items.flash.out_of_stock")
     end
+
     redirect_to carts_path
   end
 
