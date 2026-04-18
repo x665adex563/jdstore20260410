@@ -4,4 +4,9 @@ class Order < ApplicationRecord
 
   belongs_to :user
   has_many :product_lists, dependent: :destroy
+  has_secure_token
+
+  def to_param
+    token
+  end
 end
