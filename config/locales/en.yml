@@ -97,6 +97,15 @@ en:
       billing_address: "Billing Address"
       shipping_name: "Shipping Name"
       shipping_address: "Shipping Address"
+  show:
+    title: "Order Details"
+    shipping_title: "Shipping Information"
+    total: "Total"
+    billing_info: "Orderer"
+    shipping_info: "Receiver"
+    table:
+      product_info: "Product Details"
+      price: "Price"
 
   activerecord:
     attributes:
