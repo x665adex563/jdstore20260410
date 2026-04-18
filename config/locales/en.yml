@@ -52,6 +52,11 @@ en:
     clear: "Clear Cart"
     confirm_clear: "Are you sure you want to clear the entire cart?"
     cleared_notice: "Cart has been cleared"
+    cart_details: "Cart Details"
+    order_info: "Order Information"
+    orderer: "Orderer"
+    receiver: "Receiver"
+    submit_order: "Submit Order"
 
     table:
       product_info: "Product Info"
@@ -86,6 +91,13 @@ en:
     show:
       quantity: "Stock"
 
+  orders:
+    form:
+      billing_name: "Billing Name"
+      billing_address: "Billing Address"
+      shipping_name: "Shipping Name"
+      shipping_address: "Shipping Address"
+      
   activerecord:
     attributes:
       product:
