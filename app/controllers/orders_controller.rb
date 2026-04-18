@@ -18,13 +18,13 @@ class OrdersController < ApplicationController
 
       redirect_to order_path(@order)
     else
-      render 'carts/checkout'
+      render 'carts/checkout', status: :unprocessable_entity
     end
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_lists = @order.product_lists
+    @product_lists = @order.product_lists
   end
 
   private

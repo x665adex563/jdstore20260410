@@ -97,7 +97,7 @@ en:
       billing_address: "Billing Address"
       shipping_name: "Shipping Name"
       shipping_address: "Shipping Address"
-      
+
   activerecord:
     attributes:
       product:
