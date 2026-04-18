@@ -22,6 +22,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = Order.find(params[:id])
+    @order_lists = @order.product_lists
+  end
+
   private
 
   def order_params
