@@ -21,6 +21,12 @@
 
   <div class="absolute right-0 top-full z-50 hidden pt-2 group-hover:block">
     <div class="w-48 rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
+      <%= link_to account_orders_path,
+          class: "flex items-center px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50" do %>
+        <i class="fa-solid fa-receipt w-5 mr-2 text-gray-400 text-center"></i>
+        <%= t("navbar.orders") %>
+      <% end %>
+
       <%= link_to destroy_user_session_path,
           data: { turbo_method: :delete },
           class: "block px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50" do %>
