@@ -3,4 +3,5 @@ class Order < ApplicationRecord
   validates :shipping_name, :shipping_address, presence: true
 
   belongs_to :user
+  has_many :product_lists, dependent: :destroy
 end
