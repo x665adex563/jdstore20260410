@@ -83,6 +83,49 @@
         </table>
       </div>
     </section>
+    <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h2 class="text-2xl font-bold text-gray-900">
+          <%= t("orders.payment.title") %>
+        </h2>
+      </div>
 
+      <div class="space-y-4 px-6 py-4">
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-gray-600">
+            <%= t("orders.payment.status_label") %>
+          </p>
+          <span class="rounded-full px-3 py-1 text-sm font-medium <%= @order.is_paid? ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %>">
+            <%= @order.is_paid? ? t("orders.payment.paid") : t("orders.payment.unpaid") %>
+          </span>
+        </div>
+
+        <% unless @order.is_paid? %>
+        <div class="flex items-center justify-between mt-4">
+          <!-- 左邊 -->
+          <p class="text-sm text-gray-600">
+            <%= t("orders.payment.choose_method") %>
+          </p>
+
+          <!-- 右邊 -->
+          <div class="flex space-x-4">
+            <%= button_to t("orders.payment.creditcard"),
+                pay_with_creditcard_order_path(@order),
+                data: { turbo_confirm: t("orders.payment.confirm_creditcard") },
+                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200" %>
+
+            <%= button_to t("orders.payment.ewallet"),
+                pay_with_ewallet_order_path(@order),
+                data: { turbo_confirm: t("orders.payment.confirm_ewallet") },
+                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200" %>
+          </div>
+        </div>
+        <% else %>
+          <p class="text-sm text-gray-600">
+            <%= t("orders.payment.paid_message") %>
+          </p>
+        <% end %>
+      </div>
+    </section>
   </div>
 </div>
