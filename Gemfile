@@ -29,6 +29,7 @@ gem "solid_queue"
 gem "solid_cable"
 gem 'devise'
 gem 'image_processing', '~> 1.2'
+gem 'letter_opener', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
