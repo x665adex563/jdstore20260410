@@ -9,4 +9,12 @@ class Order < ApplicationRecord
   def to_param
     token
   end
+
+  def set_payment_with!(method)
+    update!(payment_method: method)
+  end
+
+  def pay!
+    update!(is_paid: true)
+  end
 end
