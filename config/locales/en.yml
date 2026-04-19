@@ -41,7 +41,7 @@ en:
   time:
     formats:
       long: "%Y-%m-%d %H:%M"
-      
+
   navbar:
     products: "Products"
     cart: "Cart"
@@ -102,6 +102,25 @@ en:
       billing_address: "Billing Address"
       shipping_name: "Shipping Name"
       shipping_address: "Shipping Address"
+    payment:
+      title: "Payment"
+      status_label: "Payment Status"
+      unpaid: "Unpaid"
+      paid: "Paid"
+      paid_message: "This order has already been paid."
+
+      choose_method: "Please choose a payment method"
+
+      creditcard: "Credit Card"
+      ewallet: "E-Wallet"
+
+      confirm_creditcard: "Are you sure you want to pay with credit card?"
+      confirm_ewallet: "Are you sure you want to pay with e-wallet?"
+
+      already_paid: "This order is already paid."
+      success: "%{method} payment successful"
+      failed: "Payment failed. Please try again later."
+
   show:
     title: "Order Details"
     shipping_title: "Shipping Information"
