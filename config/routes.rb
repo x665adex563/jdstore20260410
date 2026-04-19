@@ -21,7 +21,7 @@ Rails.application.routes.draw do
         get :checkout
       end
     end
-    resources :orders do
+    resources :orders, params: :token do
       member do
         post :pay_with_creditcard
         post :pay_with_ewallet

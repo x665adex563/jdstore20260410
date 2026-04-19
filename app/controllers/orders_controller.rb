@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create]
-  before_action :set_order, only: [:pay_with_creditcard, :pay_with_ewallet]
+  before_action :set_order, only: [:show, :pay_with_creditcard, :pay_with_ewallet]
 
   def create
     @order = Order.new(order_params)
@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by!(token: params[:id])
     @product_lists = @order.product_lists
   end
 
@@ -43,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def set_order
-    @order = Order.find_by!(token: params[:token])
+    @order = Order.find_by!(token: params[:id])
   end
 
   def process_payment(method)
