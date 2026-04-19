@@ -1,0 +1,80 @@
+<div style="max-width: 600px; margin: 0 auto; padding: 16px; font-family: Arial, sans-serif; color: #333;">
+  <!-- 訂單明細 -->
+  <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">
+    t("order_mailer.notify_order_placed.order_details")
+    <br>
+    <small style="font-size: 12px; color: #1D4ED8;">
+      <%= link_to t("order_mailer.notify_order_placed.order_link"), order_url(@order), style: "text-decoration: underline; color: #1D4ED8;" %>
+    </small>
+  </h2>
+
+  <!-- 商品列表 -->
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 16px; border: 1px solid #D1D5DB;">
+    <thead>
+      <tr style="background-color: #F3F4F6;">
+        <th style="padding: 8px; text-align: left; width: 60%;">
+          <%= t("order_mailer.notify_order_placed.table.product_info") %>
+        </th>
+        <th style="padding: 8px; text-align: left;">
+          <%= t("order_mailer.notify_order_placed.table.price") %>
+        </th>
+        <th style="padding: 8px; text-align: left;">
+          <%= t("order_mailer.notify_order_placed.table.quantity") %>
+        </th>
+        <th style="padding: 8px; text-align: left;">
+          <%= t("order_mailer.notify_order_placed.table.subtotal") %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @product_lists.each do |product_list| %>
+        <tr>
+          <td style="padding: 8px; border-top: 1px solid #E5E7EB;"><%= product_list.product_name %></td>
+          <td style="padding: 8px; border-top: 1px solid #E5E7EB;"><%= product_list.product_price %></td>
+          <td style="padding: 8px; border-top: 1px solid #E5E7EB;"><%= product_list.quantity %></td>
+          <td style="padding: 8px; border-top: 1px solid #E5E7EB;"><%= product_list.total %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!-- 總計 -->
+<div style="text-align: right; margin-bottom: 16px;">
+  <h4 style="font-size: 16px; font-weight: bold; margin: 0;">
+    <%= t("order_mailer.notify_order_placed.total") %>
+    <%= @order.total %>
+    <%= t("order_mailer.notify_order_placed.currency") %>
+  </h4>
+</div>
+
+<hr style="border: 1px solid #D1D5DB; margin: 16px 0;">
+
+<!-- 寄送資訊 -->
+<h2 style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">
+  <%= t("order_mailer.notify_order_placed.shipping_info") %>
+</h2>
+<table style="width: 100%; border-collapse: collapse;">
+  <tbody>
+    <tr style="background-color: #F3F4F6;">
+      <td style="padding: 8px; font-weight: bold;">
+        <%= t("order_mailer.notify_order_placed.billing") %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">
+        <%= @order.billing_name %> - <%= @order.billing_address %>
+      </td>
+    </tr>
+    <tr style="background-color: #F3F4F6;">
+      <td style="padding: 8px; font-weight: bold;">
+        <%= t("order_mailer.notify_order_placed.shipping") %>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">
+        <%= @order.shipping_name %> - <%= @order.shipping_address %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
