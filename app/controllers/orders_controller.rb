@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create]
+  before_action :set_order, only: [:pay_with_creditcard, :pay_with_ewallet]
 
   def create
     @order = Order.new(order_params)
@@ -27,9 +28,35 @@ class OrdersController < ApplicationController
     @product_lists = @order.product_lists
   end
 
+  def pay_with_creditcard
+    process_payment("creditcard")
+  end
+
+  def pay_with_ewallet
+    process_payment("ewallet")
+  end
+
   private
 
   def order_params
     params.require(:order).permit(:billing_name, :billing_address, :shipping_name, :shipping_address)
+  end
+
+  def set_order
+    @order = Order.find_by!(token: params[:token])
+  end
+
+  def process_payment(method)
+    if @order.is_paid?
+      redirect_to order_path(@order), alert: t("orders.payment.already_paid")
+      return
+    end
+
+    @order.set_payment_with!(method)
+    if @order.pay!
+      redirect_to order_path(@order), notice: t("orders.payment.success", method: method)
+    else
+      redirect_to order_path(@order), alert: t("orders.payment.failed")
+    end
   end
 end
