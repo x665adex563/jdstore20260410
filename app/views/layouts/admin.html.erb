@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Admin | Jdstore20260410" %></title>
+    <title><%= content_for(:title) || t("admin.layout.title") %></title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Jdstore20260410 Admin">
+    <meta name="application-name" content="<%= t("admin.layout.app_name") %>">
     <meta name="mobile-web-app-capable" content="yes">
 
     <%= csrf_meta_tags %>
@@ -26,12 +27,12 @@
     <header class="border-b border-gray-200 bg-white">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <h1 class="text-lg font-bold">
-          Admin Panel
+          <%= t("admin.layout.header") %>
         </h1>
 
         <%= link_to root_path,
             class: "text-sm text-gray-600 hover:text-gray-900" do %>
-          ← Back to Store
+          <%= t("admin.layout.back_to_store") %>
         <% end %>
       </div>
     </header>
