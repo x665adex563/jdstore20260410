@@ -1,0 +1,42 @@
+<div class="flex flex-wrap justify-end gap-2 p-2">
+  <% case order.aasm_state %>
+  <% when "order_placed" %>
+    <%= link_to t("admin.orders.actions.cancel"),
+                cancel_admin_order_path(order),
+                data: { turbo_method: :post, turbo_confirm: t("admin.orders.confirm.cancel") },
+                class: "inline-flex items-center rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600" %>
+
+  <% when "paid" %>
+    <%= link_to t("admin.orders.actions.cancel"),
+                cancel_admin_order_path(order),
+                data: { turbo_method: :post, turbo_confirm: t("admin.orders.confirm.cancel") },
+                class: "inline-flex items-center rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600" %>
+
+    <%= link_to t("admin.orders.actions.ship"),
+                ship_admin_order_path(order),
+                data: { turbo_method: :post, turbo_confirm: t("admin.orders.confirm.ship") },
+                class: "inline-flex items-center rounded-lg bg-green-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-600" %>
+
+  <% when "shipping" %>
+    <%= link_to t("admin.orders.actions.mark_shipped"),
+                shipped_admin_order_path(order),
+                data: { turbo_method: :post, turbo_confirm: t("admin.orders.confirm.mark_shipped") },
+                class: "inline-flex items-center rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-600" %>
+
+  <% when "shipped" %>
+    <%= link_to t("admin.orders.actions.return"),
+                return_admin_order_path(order),
+                data: { turbo_method: :post, turbo_confirm: t("admin.orders.confirm.return") },
+                class: "inline-flex items-center rounded-lg bg-yellow-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-yellow-600" %>
+
+  <% when "order_cancelled" %>
+    <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600">
+      <%= t("admin.orders.state.cancelled") %>
+    </span>
+
+  <% when "good_returned" %>
+    <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600">
+      <%= t("admin.orders.state.returned") %>
+    </span>
+  <% end %>
+</div>

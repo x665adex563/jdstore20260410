@@ -6,6 +6,9 @@
         <%= render_order_paid_state(@order) %>
       </span>
     </h2>
+    <div class="flex items-center gap-2">
+      <%= render "admin/orders/state_option", order: @order %>
+    </div>
   </div>
 
   <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
