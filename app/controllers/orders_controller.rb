@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
     end
 
     @order.set_payment_with!(method)
-    if @order.pay!
+    if @order.make_payment!
       redirect_to order_path(@order), notice: t("orders.payment.success", method: method)
     else
       redirect_to order_path(@order), alert: t("orders.payment.failed")
