@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Admin | Jdstore20260410" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Jdstore20260410 Admin">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-100 text-gray-900">
+    <!-- Top bar -->
+    <header class="border-b border-gray-200 bg-white">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <h1 class="text-lg font-bold">
+          Admin Panel
+        </h1>
+
+        <%= link_to root_path,
+            class: "text-sm text-gray-600 hover:text-gray-900" do %>
+          ← Back to Store
+        <% end %>
+      </div>
+    </header>
+
+    <!-- Main layout -->
+    <div class="mx-auto grid max-w-7xl grid-cols-12 gap-6 px-6 py-6">
+
+      <!-- Sidebar -->
+      <aside class="col-span-12 md:col-span-3 lg:col-span-2">
+        <div class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+          <nav class="space-y-2">
+
+            <%= link_to admin_products_path,
+                class: "flex items-center gap-2 rounded px-3 py-2 text-sm hover:bg-gray-100" do %>
+              <i class="fa-solid fa-box"></i>
+              <span><%= t("admin.navbar.products") %></span>
+            <% end %>
+
+            <%= link_to admin_orders_path,
+                class: "flex items-center gap-2 rounded px-3 py-2 text-sm hover:bg-gray-100" do %>
+              <i class="fa-solid fa-receipt"></i>
+              <span><%= t("admin.navbar.orders") %></span>
+            <% end %>
+
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <main class="col-span-12 md:col-span-9 lg:col-span-10">
+        <%= render "shared/flash" %>
+
+        <div class="mt-4 rounded-xl bg-white p-6 shadow-sm">
+          <%= yield %>
+        </div>
+      </main>
+
+    </div>
+  </body>
+</html>
