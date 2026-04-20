@@ -166,16 +166,10 @@ en:
 
   order_mailer:
     notify_order_placed:
-      subject: "[JDstore] Order Confirmation"
-      order_details: "Order Details"
-      order_link: "Order Link"
+      subject: "Order confirmation"
+      order_details: "Order summary"
+      order_link: "View order"
       total: "Total"
-      currency: "CNY"
-      shipping_info: "Shipping Information"
-      billing: "Billing Info"
-      shipping: "Recipient"
-      table:
-        product_info: "Product Info"
-        price: "Price"
-        quantity: "Quantity"
-        subtotal: "Subtotal"
+      shipping_info: "Shipping details"
+      billing: "Billing"
+      shipping: "Shipping"

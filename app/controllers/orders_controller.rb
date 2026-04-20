@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def set_order
-    @order = Order.find_by!(token: params[:id])
+    @order = Order.find_by!(token: params[:token])
   end
 
   def process_payment(method)
