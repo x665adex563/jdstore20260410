@@ -156,6 +156,11 @@ en:
         image: "Image"
 
   admin:
+    layout:
+      title: "JD Store Admin"
+      app_name: "JD Store Admin"
+      header: "Admin"
+      back_to_store: "Back To Store"
     products:
       new:
         page_title: "New Product"
@@ -225,7 +230,7 @@ en:
       shipping_info: "Shipping details"
       billing: "Billing"
       shipping: "Shipping"
-      
+
     notify_ship:
       title: "Your order has been shipped"
       description: "Your order is on the way. Please check the details below."
