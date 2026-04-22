@@ -1,0 +1,137 @@
+<div style="margin:0; padding:0; background-color:#f3f4f6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f3f4f6; margin:0; padding:24px 0; width:100%;">
+    <tr>
+      <td align="center">
+
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px; max-width:600px; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:12px;">
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:32px 32px 20px 32px; border-bottom:1px solid #e5e7eb;">
+              <div style="font-size:24px; line-height:32px; font-weight:bold; color:#111827; margin-bottom:8px;">
+                <%= t("order_mailer.notify_order_placed.order_details") %>
+              </div>
+
+              <div style="font-size:14px; line-height:20px; color:#6b7280; margin-bottom:16px;">
+                <%= t("order_mailer.notify_order_placed.subject") %>
+              </div>
+
+              <a href="<%= order_url(token: @order.to_param, locale: I18n.locale) %>"
+                 style="display:inline-block; padding:10px 16px; background-color:#2563eb; color:#ffffff; text-decoration:none; font-size:14px; font-weight:bold; border-radius:8px;">
+                <%= t("order_mailer.notify_order_placed.order_link") %>
+              </a>
+            </td>
+          </tr>
+
+          <!-- Product Section Title -->
+          <tr>
+            <td style="padding:24px 32px 12px 32px;">
+              <div style="font-size:18px; line-height:28px; font-weight:bold; color:#111827;">
+                <%= t("order_mailer.notify_order_placed.order_details") %>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Product List -->
+          <tr>
+            <td style="padding:0 32px 8px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; border-collapse:collapse;">
+                <% @product_lists.each do |product_list| %>
+                  <tr>
+                    <td style="padding:16px 0; border-bottom:1px solid #e5e7eb; vertical-align:top;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;">
+                        <tr>
+                          <td style="font-size:15px; line-height:22px; font-weight:bold; color:#111827; padding-bottom:4px;">
+                            <%= product_list.product_name %>
+                          </td>
+                          <td align="right" style="font-size:15px; line-height:22px; font-weight:bold; color:#111827; padding-bottom:4px; white-space:nowrap;">
+                            <%= number_to_currency(product_list.product_price * product_list.quantity, unit: t("currency.unit")) %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-size:13px; line-height:20px; color:#6b7280;">
+                            <%= number_to_currency(product_list.product_price, unit: t("currency.unit")) %>
+                            ×
+                            <%= product_list.quantity %>
+                          </td>
+                          <td></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Total -->
+          <tr>
+            <td style="padding:8px 32px 28px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;">
+                <tr>
+                  <td style="font-size:14px; line-height:20px; color:#6b7280;">
+                    <%= t("order_mailer.notify_order_placed.total") %>
+                  </td>
+                  <td align="right" style="font-size:24px; line-height:32px; font-weight:bold; color:#111827; white-space:nowrap;">
+                    <%= number_to_currency(@order.total, unit: t("currency.unit")) %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Shipping Info -->
+          <tr>
+            <td style="padding:0 32px 12px 32px;">
+              <div style="height:1px; background-color:#e5e7eb; line-height:1px; font-size:1px;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:12px 32px 12px 32px;">
+              <div style="font-size:18px; line-height:28px; font-weight:bold; color:#111827;">
+                <%= t("order_mailer.notify_order_placed.shipping_info") %>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 32px 32px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; border-collapse:collapse;">
+                <tr>
+                  <td style="padding:16px; background-color:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
+                    <div style="font-size:12px; line-height:18px; font-weight:bold; color:#6b7280; text-transform:uppercase; margin-bottom:8px;">
+                      <%= t("order_mailer.notify_order_placed.billing") %>
+                    </div>
+                    <div style="font-size:14px; line-height:22px; color:#111827;">
+                      <%= @order.billing_name %><br>
+                      <%= @order.billing_address %>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="height:12px; line-height:12px; font-size:12px;">&nbsp;</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:16px; background-color:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
+                    <div style="font-size:12px; line-height:18px; font-weight:bold; color:#6b7280; text-transform:uppercase; margin-bottom:8px;">
+                      <%= t("order_mailer.notify_order_placed.shipping") %>
+                    </div>
+                    <div style="font-size:14px; line-height:22px; color:#111827;">
+                      <%= @order.shipping_name %><br>
+                      <%= @order.shipping_address %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</div>

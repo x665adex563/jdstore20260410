@@ -6,8 +6,11 @@ class Cart < ApplicationRecord
     return false if product.quantity <= 0
 
     item = cart_items.find_or_initialize_by(product_id: product.id)
-    item.quantity ||= 0
-    item.quantity += 1
+    if item.new_record?
+      item.quantity = 1
+    else
+      item.quantity += 1
+    end
     item.save
   end
 

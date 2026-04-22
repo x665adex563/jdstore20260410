@@ -11,6 +11,14 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :products
+      resources :orders do
+        member do
+          post :cancel
+          post :ship
+          post :shipped
+          post :return
+        end
+      end
     end
 
     resources :products, only: [:index, :show]
@@ -21,7 +29,15 @@ Rails.application.routes.draw do
         get :checkout
       end
     end
-    resources :orders
+    resources :orders, param: :token do
+      member do
+        post :pay_with_creditcard
+        post :pay_with_ewallet
+      end
+    end
+    namespace :account do
+      resources :orders
+    end
 
     # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
     # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

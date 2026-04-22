@@ -1,0 +1,92 @@
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold text-gray-900">
+      <%= t("admin.orders.show.title") %>
+      <span class="ml-2 inline-flex rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
+        <%= render_order_paid_state(@order) %>
+      </span>
+    </h2>
+    <div class="flex items-center gap-2">
+      <%= render "admin/orders/state_option", order: @order %>
+    </div>
+  </div>
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <div class="border-b border-gray-200 px-6 py-4">
+      <h3 class="text-lg font-semibold text-gray-900">
+        <%= t("admin.orders.show.product_info") %>
+      </h3>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="w-4/5 px-6 py-3 text-left text-sm font-semibold text-gray-700">
+              <%= t("admin.orders.show.product_info") %>
+            </th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+              <%= t("admin.orders.show.price") %>
+            </th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+              <%= t("admin.orders.show.quantity") %>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-100 bg-white">
+          <% @product_lists.each do |product_list| %>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 text-sm text-gray-900">
+                <%= product_list.product_name %>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                <%= product_list.product_price %>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-700">
+                <%= product_list.quantity %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="border-t border-gray-200 px-6 py-4">
+      <div class="flex justify-end">
+        <p class="text-lg font-semibold text-gray-900">
+          <%= t("admin.orders.show.total") %>
+          <span class="ml-2"><%= @order.total %> <%= t("admin.orders.show.currency") %></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <div class="border-b border-gray-200 px-6 py-4">
+      <h3 class="text-lg font-semibold text-gray-900">
+        <%= t("admin.orders.show.shipping_info") %>
+      </h3>
+    </div>
+
+    <div class="space-y-6 px-6 py-4">
+      <div>
+        <h4 class="mb-2 text-sm font-semibold text-gray-700">
+          <%= t("admin.orders.show.billing") %>
+        </h4>
+        <p class="text-sm text-gray-900">
+          <%= @order.billing_name %> - <%= @order.billing_address %>
+        </p>
+      </div>
+
+      <div>
+        <h4 class="mb-2 text-sm font-semibold text-gray-700">
+          <%= t("admin.orders.show.shipping") %>
+        </h4>
+        <p class="text-sm text-gray-900">
+          <%= @order.shipping_name %> - <%= @order.shipping_address %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

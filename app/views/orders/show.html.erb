@@ -1,0 +1,131 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mx-auto max-w-4xl space-y-8">
+
+    <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h2 class="text-2xl font-bold text-gray-900">
+          <%= t("orders.show.title") %>
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="w-[80%] px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <%= t("orders.show.table.product_info") %>
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <%= t("orders.show.table.price") %>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-100 bg-white">
+            <% @product_lists.each do |product_list| %>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-sm text-gray-800">
+                  <%= product_list.product_name %>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-800">
+                  <%= number_to_currency(product_list.product_price, unit: t("currency.unit"), precision: 0) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="border-t border-gray-200 px-6 py-4">
+        <div class="flex justify-end">
+          <p class="text-lg font-semibold text-gray-900">
+            <%= t("orders.show.total") %>
+            <span class="ml-2">
+              <%= number_to_currency(@order.total, unit: t("currency.unit"), precision: 0) %>
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h2 class="text-2xl font-bold text-gray-900">
+          <%= t("orders.show.shipping_title") %>
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <tbody class="divide-y divide-gray-100 bg-white">
+            <tr class="bg-gray-50">
+              <td class="px-6 py-3 text-sm font-semibold text-gray-700">
+                <%= t("orders.show.billing_info") %>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-sm text-gray-800">
+                <%= @order.billing_name %> - <%= @order.billing_address %>
+              </td>
+            </tr>
+
+            <tr class="bg-gray-50">
+              <td class="px-6 py-3 text-sm font-semibold text-gray-700">
+                <%= t("orders.show.shipping_info") %>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-sm text-gray-800">
+                <%= @order.shipping_name %> - <%= @order.shipping_address %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="border-b border-gray-200 px-6 py-4">
+        <h2 class="text-2xl font-bold text-gray-900">
+          <%= t("orders.payment.title") %>
+        </h2>
+      </div>
+
+      <div class="space-y-4 px-6 py-4">
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-gray-600">
+            <%= t("orders.payment.status_label") %>
+          </p>
+          <span class="rounded-full px-3 py-1 text-sm font-medium <%= @order.is_paid? ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %>">
+            <%= @order.is_paid? ? t("orders.payment.paid") : t("orders.payment.unpaid") %>
+          </span>
+        </div>
+
+        <% unless @order.is_paid? %>
+        <div class="flex items-center justify-between mt-4">
+          <!-- 左邊 -->
+          <p class="text-sm text-gray-600">
+            <%= t("orders.payment.choose_method") %>
+          </p>
+
+          <!-- 右邊 -->
+          <div class="flex space-x-4">
+            <%= button_to t("orders.payment.creditcard"),
+                pay_with_creditcard_order_path(@order),
+                data: { turbo_confirm: t("orders.payment.confirm_creditcard") },
+                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200" %>
+
+            <%= button_to t("orders.payment.ewallet"),
+                pay_with_ewallet_order_path(@order),
+                data: { turbo_confirm: t("orders.payment.confirm_ewallet") },
+                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200" %>
+          </div>
+        </div>
+        <% else %>
+          <p class="text-sm text-gray-600">
+            <%= t("orders.payment.paid_message") %>
+          </p>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>

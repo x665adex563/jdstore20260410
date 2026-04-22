@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_18_015825) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_20_031737) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -55,15 +55,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_18_015825) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string "aasm_state", default: "order_placed"
     t.string "billing_address"
     t.string "billing_name"
     t.datetime "created_at", null: false
+    t.boolean "is_paid", default: false, null: false
+    t.string "payment_method"
     t.string "shipping_address"
     t.string "shipping_name"
+    t.string "token", null: false
     t.integer "total", default: 0
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.index ["aasm_state"], name: "index_orders_on_aasm_state"
+    t.index ["token"], name: "index_orders_on_token", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "product_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "order_id", null: false
+    t.string "product_name"
+    t.integer "product_price"
+    t.integer "quantity"
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_product_lists_on_order_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -93,4 +109,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_18_015825) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "product_lists", "orders"
 end

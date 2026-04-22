@@ -1,0 +1,62 @@
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold text-gray-900">
+      <%= t("admin.orders.index.title") %>
+    </h2>
+  </div>
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <% if @orders.any? %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                #
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <%= t("admin.orders.index.created_at") %>
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <%= t("admin.orders.index.user") %>
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <%= t("admin.orders.index.status") %>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-100 bg-white">
+            <% @orders.each do |order| %>
+              <tr class="hover:bg-gray-50">
+                <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                  <%= link_to admin_order_path(order), class: "text-blue-600 hover:text-blue-800 hover:underline" do %>
+                    #<%= order.id %>
+                  <% end %>
+                </td>
+
+                <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                  <%= l(order.created_at, format: :long) %>
+                </td>
+
+                <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+                  <%= order.user.email %>
+                </td>
+
+                <td class="whitespace-nowrap px-6 py-4 text-sm">
+                  <span class="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                    <%= t("admin.orders.states.#{order.aasm_state}", default: order.aasm_state.humanize) %>
+                  </span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="px-6 py-10 text-center text-sm text-gray-500">
+        <%= t("admin.orders.index.no_orders") %>
+      </div>
+    <% end %>
+  </div>
+</div>

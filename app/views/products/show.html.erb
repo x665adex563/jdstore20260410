@@ -4,7 +4,7 @@
     <!-- 左：圖片 -->
     <div>
       <% if @product.image.attached? %>
-        <%= image_tag @product.image.variant(resize_to_limit: [600, 600]),
+        <%= image_tag @product.image,
             class: "w-full rounded-2xl border border-gray-200 object-cover shadow-sm" %>
       <% else %>
         <div class="flex aspect-square w-full items-center justify-center rounded-2xl border border-gray-200 bg-gray-100 shadow-sm">
