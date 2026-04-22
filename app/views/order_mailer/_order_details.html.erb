@@ -1,0 +1,105 @@
+<!-- Product Section Title -->
+<tr>
+  <td style="padding:24px 32px 12px 32px;">
+    <div style="font-size:18px; line-height:28px; font-weight:bold; color:#111827;">
+      <%= t("order_mailer.shared.order_details") %>
+    </div>
+  </td>
+</tr>
+
+<!-- Product List -->
+<tr>
+  <td style="padding:0 32px 8px 32px;">
+    <table role="presentation" width="100%" style="border-collapse:collapse;">
+      <% @product_lists.each do |product_list| %>
+        <tr>
+          <td style="padding:16px 0; border-bottom:1px solid #e5e7eb;">
+            <table width="100%">
+              <tr>
+                <td style="font-weight:bold;">
+                  <%= product_list.product_name %>
+                </td>
+                <td align="right" style="font-weight:bold;">
+                  <%= number_to_currency(product_list.product_price * product_list.quantity, unit: t("currency.unit")) %>
+                </td>
+              </tr>
+              <tr>
+                <td style="color:#6b7280; font-size:13px;">
+                  <%= number_to_currency(product_list.product_price, unit: t("currency.unit")) %>
+                  × <%= product_list.quantity %>
+                </td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </td>
+</tr>
+
+<!-- Total -->
+<tr>
+  <td style="padding:8px 32px 28px 32px;">
+    <table width="100%">
+      <tr>
+        <td style="color:#6b7280;">
+          <%= t("order_mailer.shared.total") %>
+        </td>
+        <td align="right" style="font-size:24px; font-weight:bold;">
+          <%= number_to_currency(@order.total, unit: t("currency.unit")) %>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+
+<!-- Divider -->
+<tr>
+  <td style="padding:0 32px 12px 32px;">
+    <div style="height:1px; background-color:#e5e7eb;"></div>
+  </td>
+</tr>
+
+<!-- Shipping Info -->
+<tr>
+  <td style="padding:12px 32px;">
+    <div style="font-size:18px; font-weight:bold;">
+      <%= t("order_mailer.shared.shipping_info") %>
+    </div>
+  </td>
+</tr>
+
+<tr>
+  <td style="padding:0 32px 32px 32px;">
+    <table width="100%">
+      <!-- Billing -->
+      <tr>
+        <td style="padding:16px; background:#f9fafb; border:1px solid #e5e7eb;">
+          <div style="font-size:12px; font-weight:bold; color:#6b7280;">
+            <%= t("order_mailer.shared.billing") %>
+          </div>
+          <div>
+            <%= @order.billing_name %><br>
+            <%= @order.billing_address %>
+          </div>
+        </td>
+      </tr>
+
+      <tr><td style="height:12px;"></td></tr>
+
+      <!-- Shipping -->
+      <tr>
+        <td style="padding:16px; background:#f9fafb; border:1px solid #e5e7eb;">
+          <div style="font-size:12px; font-weight:bold; color:#6b7280;">
+            <%= t("order_mailer.shared.shipping") %>
+          </div>
+          <div>
+            <%= @order.shipping_name %><br>
+            <%= @order.shipping_address %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>

@@ -24,4 +24,26 @@ class OrderMailer < ApplicationMailer
                         token: order.token)
       )
   end
+
+  def notify_ship(order)
+    @order        = order
+    @user         = order.user
+    @product_lists = @order.product_lists
+
+    mail(
+      to: @user.email,
+      subject: t("order_mailer.notify_ship.subject", token: order.token)
+    )
+  end
+
+  def notify_cancel(order)
+    @order        = order
+    @user         = order.user
+    @product_lists = @order.product_lists
+
+    mail(
+      to: @user.email,
+      subject: t("order_mailer.notify_cancel.subject", token: order.token)
+    )
+  end
 end
