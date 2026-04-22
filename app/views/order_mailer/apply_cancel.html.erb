@@ -1,0 +1,184 @@
+<div style="margin:0; padding:0; background-color:#f3f4f6;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; margin:0; padding:24px 0; background-color:#f3f4f6;">
+    <tr>
+      <td align="center">
+
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px; max-width:600px; background-color:#ffffff; border:1px solid #e5e7eb; border-radius:12px;">
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:32px 32px 20px 32px; border-bottom:1px solid #e5e7eb;">
+              <div style="font-size:24px; line-height:32px; font-weight:bold; color:#111827; margin:0 0 8px 0;">
+                <%= t("order_mailer.apply_cancel.title") %>
+              </div>
+
+              <div style="font-size:14px; line-height:22px; color:#6b7280; margin:0;">
+                <%= t("order_mailer.apply_cancel.subtitle") %>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Status Box -->
+          <tr>
+            <td style="padding:24px 32px 8px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;">
+                <tr>
+                  <td style="padding:16px 18px; background-color:#fef2f2; border:1px solid #fecaca; border-radius:10px;">
+                    <div style="font-size:16px; line-height:24px; font-weight:bold; color:#b91c1c; margin:0 0 6px 0;">
+                      <%= t("order_mailer.apply_cancel.status_title") %>
+                    </div>
+                    <div style="font-size:14px; line-height:22px; color:#7f1d1d; margin:0;">
+                      <%= t("order_mailer.apply_cancel.status_message") %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA -->
+          <tr>
+            <td style="padding:16px 32px 8px 32px;">
+              <a href="<%= order_url(@order, locale: I18n.locale) %>"
+                 style="display:inline-block; padding:10px 16px; background-color:#dc2626; color:#ffffff; text-decoration:none; font-size:14px; line-height:20px; font-weight:bold; border-radius:8px;">
+                <%= t("order_mailer.apply_cancel.order_link") %>
+              </a>
+            </td>
+          </tr>
+
+          <!-- Order Info -->
+          <tr>
+            <td style="padding:16px 32px 8px 32px;">
+              <div style="font-size:18px; line-height:28px; font-weight:bold; color:#111827; margin:0 0 12px 0;">
+                <%= t("order_mailer.apply_cancel.order_summary") %>
+              </div>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; border-collapse:collapse;">
+                <tr>
+                  <td style="padding:12px 0; font-size:14px; line-height:22px; color:#6b7280; border-bottom:1px solid #e5e7eb; width:140px;">
+                    <%= t("order_mailer.apply_cancel.order_number") %>
+                  </td>
+                  <td style="padding:12px 0; font-size:14px; line-height:22px; color:#111827; border-bottom:1px solid #e5e7eb;">
+                    <%= @order.to_param %>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 0; font-size:14px; line-height:22px; color:#6b7280; border-bottom:1px solid #e5e7eb;">
+                    <%= t("order_mailer.apply_cancel.payment_status") %>
+                  </td>
+                  <td style="padding:12px 0; font-size:14px; line-height:22px; color:#111827; border-bottom:1px solid #e5e7eb;">
+                    <%= @order.is_paid? ? t("order_mailer.apply_cancel.paid") : t("order_mailer.apply_cancel.unpaid") %>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 0; font-size:14px; line-height:22px; color:#6b7280;">
+                    <%= t("order_mailer.apply_cancel.total") %>
+                  </td>
+                  <td style="padding:12px 0; font-size:14px; line-height:22px; font-weight:bold; color:#111827;">
+                    <%= number_to_currency(@order.total, unit: t("currency.unit"), precision: 0) %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Product List -->
+          <tr>
+            <td style="padding:20px 32px 8px 32px;">
+              <div style="font-size:18px; line-height:28px; font-weight:bold; color:#111827; margin:0 0 12px 0;">
+                <%= t("order_mailer.apply_cancel.product_list") %>
+              </div>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; border-collapse:collapse;">
+                <% @product_lists.each do |product_list| %>
+                  <tr>
+                    <td style="padding:16px 0; border-bottom:1px solid #e5e7eb;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;">
+                        <tr>
+                          <td style="font-size:15px; line-height:22px; font-weight:bold; color:#111827; padding:0 0 4px 0;">
+                            <%= product_list.product_name %>
+                          </td>
+                          <td align="right" style="font-size:15px; line-height:22px; font-weight:bold; color:#111827; white-space:nowrap; padding:0 0 4px 0;">
+                            <%= number_to_currency(product_list.product_price * product_list.quantity, unit: t("currency.unit"), precision: 0) %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-size:13px; line-height:20px; color:#6b7280;">
+                            <%= number_to_currency(product_list.product_price, unit: t("currency.unit"), precision: 0) %>
+                            ×
+                            <%= product_list.quantity %>
+                          </td>
+                          <td></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Shipping Info -->
+          <tr>
+            <td style="padding:20px 32px 12px 32px;">
+              <div style="height:1px; background-color:#e5e7eb; line-height:1px; font-size:1px;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:8px 32px 12px 32px;">
+              <div style="font-size:18px; line-height:28px; font-weight:bold; color:#111827; margin:0;">
+                <%= t("order_mailer.apply_cancel.shipping_info") %>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:0 32px 32px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%; border-collapse:collapse;">
+                <tr>
+                  <td style="padding:16px; background-color:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
+                    <div style="font-size:12px; line-height:18px; font-weight:bold; color:#6b7280; text-transform:uppercase; margin:0 0 8px 0;">
+                      <%= t("order_mailer.apply_cancel.billing") %>
+                    </div>
+                    <div style="font-size:14px; line-height:22px; color:#111827;">
+                      <%= @order.billing_name %><br>
+                      <%= @order.billing_address %>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="height:12px; line-height:12px; font-size:12px;">&nbsp;</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:16px; background-color:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
+                    <div style="font-size:12px; line-height:18px; font-weight:bold; color:#6b7280; text-transform:uppercase; margin:0 0 8px 0;">
+                      <%= t("order_mailer.apply_cancel.shipping") %>
+                    </div>
+                    <div style="font-size:14px; line-height:22px; color:#111827;">
+                      <%= @order.shipping_name %><br>
+                      <%= @order.shipping_address %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:0 32px 32px 32px;">
+              <div style="font-size:12px; line-height:20px; color:#9ca3af; text-align:center;">
+                <%= t("order_mailer.apply_cancel.footer_note") %>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</div>

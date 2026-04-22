@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create]
-  before_action :set_order, only: [:show, :pay_with_creditcard, :pay_with_ewallet]
+  before_action :set_order, only: [:show, :pay_with_creditcard, :pay_with_ewallet, :apply_to_cancel]
 
   def create
     @order = Order.new(order_params)
@@ -36,8 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def apply_to_cancel
-    @order = Order.find_by_token(params[:id])
-    OrderMailer.apply_cancel(@order).deliver!
+    OrderMailer.apply_cancel(@order).deliver_later
     flash[:notice] = t("orders.apply_to_cancel.success")
     redirect_back(fallback_location: root_path)
   end
