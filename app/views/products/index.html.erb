@@ -1,0 +1,29 @@
+<div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+  <% @products.each do |product| %>
+    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+      <%= link_to product_path(product), class: "block" do %>
+        <% if product.image.attached? %>
+          <%= image_tag product.image, class: "h-48 w-full object-cover" %>
+        <% else %>
+          <div class="flex h-48 w-full items-center justify-center bg-gray-100 text-gray-400">
+            <div class="text-center">
+              <i class="fa-regular fa-image mb-2 text-4xl"></i>
+              <p class="text-sm"><%= t("products.no_pic") %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="p-4">
+        <h3 class="mb-2 text-sm font-semibold text-gray-900">
+          <%= link_to product.title, product_path(product), class: "transition hover:text-blue-600" %>
+        </h3>
+
+        <p class="flex items-center gap-2 text-sm text-gray-600">
+          <%= t("products.index.currency_unit") %>
+          <%= product.price %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
