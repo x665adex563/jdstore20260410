@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       member do
         post :pay_with_creditcard
         post :pay_with_ewallet
+        post :apply_to_cancel
       end
     end
     namespace :account do

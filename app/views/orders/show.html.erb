@@ -2,10 +2,20 @@
   <div class="mx-auto max-w-4xl space-y-8">
 
     <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-      <div class="border-b border-gray-200 px-6 py-4">
+      <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+
         <h2 class="text-2xl font-bold text-gray-900">
           <%= t("orders.show.title") %>
         </h2>
+
+        <% unless @order.is_paid? %>
+          <%= button_to t("orders.actions.cancel"),
+              apply_to_cancel_order_path(@order),
+              method: :post,
+              data: { turbo_confirm: t("orders.actions.confirm_cancel") },
+              class: "bg-red-100 text-red-600 hover:bg-red-200 font-medium py-2 px-4 rounded-lg text-sm" %>
+        <% end %>
+
       </div>
 
       <div class="overflow-x-auto">
@@ -118,6 +128,7 @@
                 pay_with_ewallet_order_path(@order),
                 data: { turbo_confirm: t("orders.payment.confirm_ewallet") },
                 class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200" %>
+
           </div>
         </div>
         <% else %>

@@ -35,6 +35,13 @@ class OrdersController < ApplicationController
     process_payment("ewallet")
   end
 
+  def apply_to_cancel
+    @order = Order.find_by_token(params[:id])
+    OrderMailer.apply_cancel(@order).deliver!
+    flash[:notice] = t("orders.apply_to_cancel.success")
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def order_params
