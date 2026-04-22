@@ -121,6 +121,13 @@ en:
       success: "%{method} payment successful"
       failed: "Payment failed. Please try again later."
 
+    actions:
+      cancel: "Cancel Order"
+      confirm_cancel: "Are you sure you want to cancel this order?"
+
+    apply_to_cancel:
+      success: "Your cancellation request has been submitted."
+      
   show:
     title: "Order Details"
     shipping_title: "Shipping Information"
@@ -208,7 +215,7 @@ en:
         ship: "Are you sure you want to mark this order as shipping?"
         mark_shipped: "Are you sure this order has been shipped?"
         return: "Are you sure you want to mark this order as returned?"
-        
+
   order_mailer:
     notify_order_placed:
       subject: "Order confirmation"
