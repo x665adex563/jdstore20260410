@@ -127,7 +127,7 @@ en:
 
     apply_to_cancel:
       success: "Your cancellation request has been submitted."
-      
+
   show:
     title: "Order Details"
     shipping_title: "Shipping Information"
@@ -225,3 +225,13 @@ en:
       shipping_info: "Shipping details"
       billing: "Billing"
       shipping: "Shipping"
+      
+    notify_ship:
+      title: "Your order has been shipped"
+      description: "Your order is on the way. Please check the details below."
+      cta: "View Order"
+
+    notify_cancel:
+      title: "Your order has been cancelled"
+      description: "Your order has been successfully cancelled. If you have any questions, please contact support."
+      cta: "View Order"
