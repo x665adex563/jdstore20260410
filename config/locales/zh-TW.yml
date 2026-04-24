@@ -1,4 +1,218 @@
 zh-TW:
   welcome:
     index:
-      test: "zh-TW 測試"
+      test: "測試（中文）"
+
+  common:
+    submitting: "提交中..."
+
+  currency:
+    unit: "NT$"
+
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M"
+
+  navbar:
+    products: "商品"
+    cart: "購物車"
+    orders: "我的訂單"
+    admin:
+      greeting: "嗨！%{email}"
+      products: "商品管理"
+      orders: "訂單管理"
+      sign_out: "登出"
+
+  carts:
+    title: "購物車"
+    clear: "清空購物車"
+    confirm_clear: "確定要清空整個購物車嗎？"
+    cleared_notice: "購物車已清空"
+    cart_details: "購物車內容"
+    order_info: "訂單資訊"
+    orderer: "訂購人"
+    receiver: "收件人"
+    submit_order: "送出訂單"
+
+    table:
+      product_info: "商品資訊"
+      price: "價格"
+      quantity: "數量"
+      actions: "操作"
+
+    total: "總金額"
+    checkout: "結帳"
+
+  cart_items:
+    add_to_cart: "加入購物車"
+    flash:
+      added: "已加入購物車"
+      out_of_stock: "庫存不足，無法加入此數量"
+
+    confirm_remove: "確定要刪除這個商品嗎？"
+    destroyed_notice: "已成功移除 %{product}"
+    update_button: "更新"
+    submitting: "提交中..."
+
+    updated_notice: "數量更新成功"
+
+    errors:
+      blank: "不能為空"
+      greater_than_zero: "至少要為 1"
+      exceed_stock: "不能超過庫存數量"
+
+  products:
+    no_pic: "無圖片"
+    sold_out: "已售完"
+    show:
+      quantity: "庫存"
+
+  orders:
+    form:
+      billing_name: "訂購人姓名"
+      billing_address: "訂購人地址"
+      shipping_name: "收件人姓名"
+      shipping_address: "收件人地址"
+
+    payment:
+      title: "付款"
+      status_label: "付款狀態"
+      unpaid: "未付款"
+      paid: "已付款"
+      paid_message: "此訂單已完成付款"
+
+      choose_method: "請選擇付款方式"
+
+      creditcard: "信用卡"
+      ewallet: "電子錢包"
+
+      confirm_creditcard: "確定使用信用卡付款？"
+      confirm_ewallet: "確定使用電子錢包付款？"
+
+      already_paid: "此訂單已付款"
+      success: "%{method} 付款成功"
+      failed: "付款失敗，請稍後再試"
+
+    actions:
+      cancel: "取消訂單"
+      confirm_cancel: "確定要取消這筆訂單嗎？"
+
+    apply_to_cancel:
+      success: "您的取消申請已送出"
+
+  show:
+    title: "訂單明細"
+    shipping_title: "配送資訊"
+    total: "總金額"
+    billing_info: "訂購人"
+    shipping_info: "收件人"
+    table:
+      product_info: "商品資訊"
+      price: "價格"
+
+  account_orders:
+    index:
+      title: "我的訂單"
+      empty: "目前尚無訂單"
+      table:
+        order_number: "訂單編號"
+        created_at: "建立時間"
+
+  activerecord:
+    attributes:
+      product:
+        title: "商品名稱"
+        description: "商品描述"
+        quantity: "庫存"
+        price: "價格"
+        image: "圖片"
+
+  admin:
+    layout:
+      title: "JD 商店後台"
+      app_name: "JD 商店後台"
+      header: "後台管理"
+      back_to_store: "回到前台"
+
+    products:
+      new:
+        page_title: "新增商品"
+        submit_label: "建立商品"
+      edit:
+        page_title: "編輯商品"
+        submit_label: "更新商品"
+
+      flash:
+        created: "商品建立成功"
+        updated: "商品更新成功"
+        deleted: "商品已刪除"
+        not_admin: "您不是管理員"
+
+      confirm:
+        delete: "確定要刪除這個商品嗎？"
+
+    navbar:
+      products: "商品"
+      orders: "訂單"
+
+    orders:
+      index:
+        title: "訂單列表"
+        created_at: "建立時間"
+        user: "顧客"
+        status: "狀態"
+
+      show:
+        title: "訂單明細"
+        product_info: "商品資訊"
+        price: "價格"
+        quantity: "數量"
+        total: "總金額"
+        currency: "NT$"
+        shipping_info: "配送資訊"
+        billing: "訂購人"
+        shipping: "收件人"
+
+      actions:
+        cancel: "取消訂單"
+        ship: "出貨"
+        mark_shipped: "標記為已出貨"
+        return: "退貨"
+
+      state:
+        cancelled: "訂單已取消"
+        returned: "已退貨"
+
+      aasm_state:
+        order_placed: "已下單"
+        paid: "已付款"
+        shipping: "配送中"
+        shipped: "已出貨"
+        order_cancelled: "訂單已取消"
+        good_returned: "已退貨"
+
+      confirm:
+        cancel: "確定要取消訂單？"
+        ship: "確定要開始出貨？"
+        mark_shipped: "確定已出貨？"
+        return: "確定要標記為退貨？"
+
+  order_mailer:
+    notify_order_placed:
+      subject: "訂單確認通知"
+      order_details: "訂單內容"
+      order_link: "查看訂單"
+      total: "總金額"
+      shipping_info: "配送資訊"
+      billing: "訂購人"
+      shipping: "收件人"
+
+    notify_ship:
+      title: "您的訂單已出貨"
+      description: "您的訂單已寄出，請查看以下資訊"
+      cta: "查看訂單"
+
+    notify_cancel:
+      title: "您的訂單已取消"
+      description: "您的訂單已成功取消，如有疑問請聯絡客服"
+      cta: "查看訂單"
