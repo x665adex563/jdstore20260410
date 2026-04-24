@@ -17,6 +17,8 @@ class OrdersController < ApplicationController
         product_list.save
       end
 
+      current_cart.clear!
+
       redirect_to order_path(@order)
     else
       render 'carts/checkout', status: :unprocessable_entity
