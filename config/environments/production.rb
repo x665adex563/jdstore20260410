@@ -83,7 +83,7 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
-    port: 587,
+    port: 2525,
     domain: "jdstore.com",
     user_name: "apikey", # 固定寫這個
     password: ENV["SENDGRID_API_KEY"],
