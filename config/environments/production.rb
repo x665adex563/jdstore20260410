@@ -81,10 +81,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
     port: 2525,
-    domain: "jdstore.com",
+    domain: "jdstore20260410.onrender.com",
     user_name: "apikey", # 固定寫這個
     password: ENV["SENDGRID_API_KEY"],
     authentication: :plain,
@@ -92,7 +95,7 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = {
-  host: "https://jdstore20260410.onrender.com"
+  host: "jdstore20260410.onrender.com"
 }
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
