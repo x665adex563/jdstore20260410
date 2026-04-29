@@ -18,7 +18,7 @@ class OrderMailer < ApplicationMailer
     @product_lists = @order.product_lists
 
     mail(
-      to: ENV.fetch("ADMIN_EMAIL", "x665adex563@gmail.com")
+      to: ENV.fetch("ADMIN_EMAIL", "x665adex563@gmail.com"),
       subject: t("order_mailer.apply_cancel.subject",
                         email: order.user.email,
                         token: order.token)
