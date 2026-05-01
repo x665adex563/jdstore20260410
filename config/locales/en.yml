@@ -222,6 +222,12 @@ en:
         return: "Are you sure you want to mark this order as returned?"
 
   order_mailer:
+    apply_cancel:
+      subject: "[JD Store] Cancellation request from %{email} - %{token}"
+      title: "Order Cancellation Request"
+      description: "The customer has requested to cancel this order."
+      cta: "View Order"
+      
     notify_order_placed:
       subject: "Order confirmation"
       order_details: "Order summary"
@@ -232,6 +238,7 @@ en:
       shipping: "Shipping"
 
     notify_ship:
+      subject: "[JD Store] Your order %{token} has been canceled"
       title: "Your order has been shipped"
       description: "Your order is on the way. Please check the details below."
       cta: "View Order"
