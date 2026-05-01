@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  default from: "JD Store no-reply@jdstoreapp.com"
+  default from: "JD Store <#{ENV['DEFAULT_FROM_EMAIL']}>"
 
   def notify_order_placed(order)
     @order = order
