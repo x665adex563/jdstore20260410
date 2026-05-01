@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  default from: "x665adex563@gmail.com"
+  default from: "JD Store no-reply@jdstoreapp.com"
 
   def notify_order_placed(order)
     @order = order
