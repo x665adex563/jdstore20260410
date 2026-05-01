@@ -97,6 +97,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {
   host: "jdstore20260410.onrender.com"
 }
+
+  config.hosts += [
+    "jdstoreapp.com",
+    "www.jdstoreapp.com"
+  ]
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
